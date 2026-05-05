@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "capture_id": "14aa62d8-66ea-4c88-b3c0-ce544e4c106b",
+  "board_id": 0,
+  "gps_epoch_ns": 1778010976595740000,
+  "gps_iso8601": "2026-05-05T19:56:16.595000Z",
+  "gps_source": "simulated",
+  "stamper_observed_at_ns": 1778010976595740000,
+  "capture_start_time_ns": 1076017212464,
+  "samples_captured": 767040,
+  "actual_sample_rate_hz": 1911397.52,
+  "duration_sec": 0.401298,
+  "end_time_gps_ns": 1778010976997038000,
+  "stamper_version": "poc-v1.0.0"
+}

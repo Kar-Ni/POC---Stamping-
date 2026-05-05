@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "poc-stamping"
+version = "1.0.0"
+description = "ID-IQ Stamping POC v1 — basic-mode stamper for Octasic captures"
+requires-python = ">=3.11"
+dependencies = [
+    "watchdog>=4.0",
+    "python-dateutil>=2.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+stamping = "stamping.main:main"

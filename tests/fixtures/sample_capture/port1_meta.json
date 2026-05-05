@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "capture": {
+    "start_time": "1970-01-01T00:18:36Z",
+    "end_time": "1970-01-01T00:18:36Z",
+    "start_time_unix": 1116,
+    "end_time_unix": 1116,
+    "capture_start_time_ns": 1116077620134,
+    "duration_sec": 0.400474,
+    "output_file": "/tmp/1/iq-captures/02616ef1-0b2b-4cba-b83d-4a7101b2b50b/port1.iq"
+  },
+  "device": {
+    "local_mac": "00:00:00:00:00:00",
+    "remote_mac": "00:0C:90:62:54:9A",
+    "rf_port": 0
+  },
+  "rf": {
+    "center_frequency_hz": 0,
+    "sample_rate_hz": 3840000,
+    "bandwidth": "3MHz",
+    "radio_standard": "lte",
+    "lte_band": 2,
+    "earfcn": 18812,
+    "rx_gain_db": 56
+  },
+  "format": {
+    "type": "cs16",
+    "sample_type": "int16",
+    "channels": 1,
+    "interleaved": true,
+    "byte_order": "little_endian"
+  },
+  "statistics": {
+    "samples_captured": 766400,
+    "bytes_written": 3065600,
+    "packets_received": 375,
+    "packets_dropped": 0,
+    "actual_sample_rate_hz": 1913732.23
+  }
+}

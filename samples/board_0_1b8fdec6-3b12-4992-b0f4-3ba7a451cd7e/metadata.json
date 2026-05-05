@@ -1,0 +1,31 @@
+{
+  "captureId" : "1b8fdec6-3b12-4992-b0f4-3ba7a451cd7e",
+  "missionRunId" : 43,
+  "boardId" : 0,
+  "imsi" : null,
+  "captureTime" : "2026-04-02T18:08:37.534321Z",
+  "centerFreqHz" : 1871200000,
+  "bandwidthHz" : 3000000,
+  "sampleRateHz" : 3840000,
+  "durationSec" : 0.2,
+  "direction" : "uplink",
+  "band" : 2,
+  "l1Parameters" : null,
+  "enodebParameters" : {
+    "srsEnabled" : true,
+    "srsDedicatedBandwidth" : "0",
+    "srsDedicatedHoppingBw" : "0",
+    "srsDedicatedFrequencyDomainPosition" : "0",
+    "srsDedicatedConfigIndex" : "10",
+    "srsDedicatedTransmissionCombination" : "0",
+    "srsDedicatedCyclicShift" : "0",
+    "srsDedicatedTransmissionCombinationNumber" : "0",
+    "srsDuration" : "1",
+    "srsAntennaPort" : "0",
+    "srsBandwidthConfig" : "5",
+    "srsSubframeConfig" : "0",
+    "downlinkBandwidth" : "n15",
+    "uplinkBandwidth" : "n15",
+    "enodebType" : "DEV"
+  }
+}
