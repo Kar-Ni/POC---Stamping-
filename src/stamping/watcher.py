@@ -4,7 +4,7 @@ Uses the `watchdog` library to detect new port1_meta.json files appearing in a
 target directory. When a new file is detected:
 
 1. Wait 200 ms for the directory to stabilize (full write).
-2. Verify metadata.json also exists alongside.
+2. Wait briefly until metadata.json also exists alongside.
 3. Hand the directory to the Stamper.
 
 This is the basic-mode trigger per Framework §14: "a new port1_meta.json is written".
@@ -18,13 +18,15 @@ import time
 from pathlib import Path
 
 from watchdog.events import FileSystemEvent, FileSystemEventHandler
-from watchdog.observers import Observer
+from watchdog.observers.polling import PollingObserver as Observer
 
 from .stamper import Stamper
 
 logger = logging.getLogger(__name__)
 
 DEBOUNCE_SEC = 0.2
+METADATA_WAIT_TIMEOUT_SEC = 5.0
+METADATA_POLL_SEC = 0.1
 
 
 class _PortMetaHandler(FileSystemEventHandler):
@@ -72,6 +74,10 @@ class _PortMetaHandler(FileSystemEventHandler):
             self._pending.pop(capture_dir, None)
         try:
             metadata = capture_dir / "metadata.json"
+            deadline = time.monotonic() + METADATA_WAIT_TIMEOUT_SEC
+            while not metadata.exists() and time.monotonic() < deadline:
+                time.sleep(METADATA_POLL_SEC)
+
             if not metadata.exists():
                 logger.warning(
                     "%s has port1_meta.json but no metadata.json — skipping",

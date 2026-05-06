@@ -68,6 +68,12 @@ class Stamper:
         gps_epoch_ns, gps_iso = self._gps.now()
 
         info = parse_capture_dir(capture_dir)
+        if info.actual_sample_rate_hz <= 0:
+            raise ValueError(
+                f"Invalid actual_sample_rate_hz in {capture_dir}: "
+                f"{info.actual_sample_rate_hz!r}"
+            )
+        duration_sec = info.samples_captured / info.actual_sample_rate_hz
 
         record = StampRecord(
             schema_version=SCHEMA_VERSION,
@@ -80,8 +86,8 @@ class Stamper:
             capture_start_time_ns=info.capture_start_time_ns,
             samples_captured=info.samples_captured,
             actual_sample_rate_hz=info.actual_sample_rate_hz,
-            duration_sec=info.duration_sec,
-            end_time_gps_ns=gps_epoch_ns + int(info.duration_sec * 1e9),
+            duration_sec=duration_sec,
+            end_time_gps_ns=gps_epoch_ns + int(duration_sec * 1e9),
             stamper_version=self._stamper_version,
         )
 
@@ -104,3 +110,8 @@ class Stamper:
             f.flush()
             os.fsync(f.fileno())
         os.replace(tmp, target)
+        dir_fd = os.open(target.parent, os.O_RDONLY)
+        try:
+            os.fsync(dir_fd)
+        finally:
+            os.close(dir_fd)

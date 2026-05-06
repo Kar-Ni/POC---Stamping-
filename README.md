@@ -4,8 +4,7 @@ Basic-mode stamping engine for Octasic captures. Reads Octasic-format capture
 directories, attaches GPS-disciplined timestamps (simulated for v1), emits
 `stamp.json` sidecar files alongside each capture.
 
-See `POC_Stamping_TechSpec.md` for full design and `Framework_of_the_IQ_Data.md`
-§13 §14 for the locked decisions.
+See `TECH_SPEC.md` for the locked POC v1 design.
 
 ## Install
 
@@ -59,4 +58,4 @@ pytest -v
 - ❌ Multi-antenna grouping — single channel only
 
 These are deferred to v2 (cataloger) and v3 (live + multi-antenna + real GPS).
-See `POC_Stamping_TechSpec.md` §12.
+See `TECH_SPEC.md`.

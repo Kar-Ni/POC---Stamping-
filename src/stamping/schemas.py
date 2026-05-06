@@ -42,7 +42,7 @@ class StampRecord:
     capture_start_time_ns: int       # echoed from port1_meta.json
     samples_captured: int            # echoed
     actual_sample_rate_hz: float     # echoed (the half-rate truth)
-    duration_sec: float              # echoed
+    duration_sec: float              # computed from samples_captured / actual_sample_rate_hz
     end_time_gps_ns: int             # computed: gps_epoch_ns + duration_sec * 1e9
     stamper_version: str
 

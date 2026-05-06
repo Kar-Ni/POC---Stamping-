@@ -91,3 +91,18 @@ def test_actual_rate_is_used_not_configured(fresh_capture):
     # the actual rate.
     assert record.actual_sample_rate_hz < 2_000_000
     assert record.actual_sample_rate_hz > 1_900_000
+
+
+def test_stamp_duration_math_uses_samples_and_actual_rate(fresh_capture):
+    """Timing math must not trust configured sampleRateHz or stale duration fields."""
+    port_meta = fresh_capture / "port1_meta.json"
+    payload = json.loads(port_meta.read_text())
+    payload["capture"]["duration_sec"] = 999.0
+    port_meta.write_text(json.dumps(payload), encoding="utf-8")
+
+    record = Stamper(SimulatedGPS()).stamp(fresh_capture)
+    assert record is not None
+
+    expected_duration = record.samples_captured / record.actual_sample_rate_hz
+    assert record.duration_sec == expected_duration
+    assert record.end_time_gps_ns == record.gps_epoch_ns + int(expected_duration * 1e9)
